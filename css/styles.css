@@ -794,8 +794,150 @@ h3,
   color: var(--muted);
 }
 
-.prose strong,
-.why-highlight {
+.prose strong {
+  color: var(--text);
+}
+
+/* === Почему ко мне: сравнение + итог === */
+.section--why {
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(227, 38, 54, 0.02), transparent 42%);
+}
+
+.section--why .section-title {
+  max-width: 26ch;
+}
+
+.why-intro {
+  max-width: 38rem;
+  margin: -0.35rem 0 2rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.section--why .section-title.reveal + .why-intro.reveal {
+  transition-delay: 0.12s;
+}
+
+.why-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (max-width: 720px) {
+  .why-compare {
+    grid-template-columns: 1fr;
+  }
+}
+
+.why-panel {
+  padding: 1.35rem 1.4rem 1.45rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition:
+    border-color 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+
+.why-panel--muted {
+  opacity: 0.97;
+}
+
+.why-panel--accent {
+  border-color: rgba(227, 38, 54, 0.28);
+  box-shadow: 0 0 0 1px rgba(227, 38, 54, 0.06);
+  background: linear-gradient(165deg, rgba(227, 38, 54, 0.07), var(--surface) 48%);
+}
+
+@media (hover: hover) {
+  .why-panel:hover {
+    border-color: rgba(227, 38, 54, 0.22);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.why-panel__title {
+  margin: 0 0 0.2rem;
+  font-family: var(--heading-font);
+  font-size: var(--heading-3-size);
+  font-weight: var(--heading-weight);
+  letter-spacing: var(--heading-track);
+  line-height: var(--heading-lh);
+  color: var(--text);
+}
+
+.why-panel__hint {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.why-panel__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.why-panel__list li {
+  position: relative;
+  padding-left: 1.15rem;
+  margin-bottom: 0.45rem;
+}
+
+.why-panel__list li:last-child {
+  margin-bottom: 0;
+}
+
+.why-panel__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.75;
+}
+
+.why-panel--accent .why-panel__list li::before {
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(227, 38, 54, 0.45);
+}
+
+.why-summary {
+  margin-top: 0.25rem;
+  padding: 1.25rem 1.35rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent);
+  background: rgba(227, 38, 54, 0.06);
+}
+
+.why-summary__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.why-summary__text {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: var(--heading-track);
+  line-height: var(--heading-lh);
   color: var(--text);
 }
 
@@ -817,15 +959,6 @@ h3,
   position: absolute;
   left: 0;
   color: var(--accent);
-}
-
-.why-highlight {
-  font-size: var(--heading-3-size);
-  font-family: var(--heading-font);
-  font-weight: var(--heading-weight);
-  letter-spacing: var(--heading-track);
-  line-height: var(--heading-lh);
-  margin-top: 1.5rem !important;
 }
 
 /* === «Что я делаю»: сетка карточек === */
