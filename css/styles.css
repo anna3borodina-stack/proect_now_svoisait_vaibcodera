@@ -111,6 +111,29 @@ body.is-cursor-ready .cursor-ring {
   border-color: var(--accent);
 }
 
+/* === Splash cursor (WebGL fluid, react-bits порт) === */
+.splash-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.splash-cursor canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 5;
+}
+
 /* === Grain overlay === */
 .grain {
   position: fixed;
@@ -1270,6 +1293,9 @@ h3,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .splash-cursor {
+    display: none !important;
+  }
   body::before {
     animation: none !important;
   }
