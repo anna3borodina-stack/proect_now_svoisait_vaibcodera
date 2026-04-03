@@ -884,8 +884,43 @@ h3,
 }
 
 .skill-card__title {
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.75rem;
   color: var(--text);
+}
+
+.skill-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1rem;
+}
+
+.skill-card__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  color: rgba(233, 234, 238, 0.88);
+  background: var(--bg-elevated);
+  border: 1px solid rgba(227, 38, 54, 0.22);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2) inset;
+  transition:
+    border-color 0.3s var(--ease-out),
+    background 0.3s var(--ease-out),
+    color 0.3s;
+}
+
+@media (hover: hover) {
+  .skill-card:hover .skill-card__tag {
+    border-color: rgba(227, 38, 54, 0.42);
+    background: rgba(227, 38, 54, 0.12);
+    color: var(--text);
+  }
 }
 
 .skill-card__text {
