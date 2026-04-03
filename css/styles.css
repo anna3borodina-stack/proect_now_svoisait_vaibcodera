@@ -801,14 +801,74 @@ h3,
   opacity: 0.92;
 }
 
+.about-photo-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.about-photo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: calc(var(--radius) + 3px);
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 85, 100, 0.65),
+    transparent 22%,
+    rgba(255, 255, 255, 0.1) 48%,
+    transparent 78%,
+    rgba(227, 38, 54, 0.55)
+  );
+  animation: border-spin 22s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.48;
+}
+
+@keyframes about-frame-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 20px 56px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 0 28px rgba(227, 38, 54, 0.22),
+      0 0 56px rgba(227, 38, 54, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 22px 60px rgba(0, 0, 0, 0.48),
+      0 0 0 1px rgba(255, 210, 215, 0.06) inset,
+      0 0 44px rgba(255, 75, 90, 0.38),
+      0 0 88px rgba(227, 38, 54, 0.16),
+      0 0 120px rgba(227, 38, 54, 0.06);
+  }
+}
+
+@keyframes about-photo-breathe {
+  0%,
+  100% {
+    transform: scale(1.018) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.04) translate(0, -1px);
+  }
+}
+
 .about-photo-frame {
   position: relative;
+  z-index: 1;
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 120, 130, 0.2);
   aspect-ratio: 9 / 16;
   background: var(--surface);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: about-frame-glow 4.6s ease-in-out infinite;
+}
+
+@media (hover: hover) {
+  .about-photo-frame:hover {
+    animation-duration: 2.9s;
+  }
 }
 
 .about-photo {
@@ -817,6 +877,28 @@ h3,
   object-fit: cover;
   object-position: center 38%;
   display: block;
+  transform: scale(1.018);
+  animation: about-photo-breathe 12s ease-in-out infinite;
+}
+
+@media (hover: hover) {
+  .about-photo-frame:hover .about-photo {
+    animation: none;
+    transform: scale(1.05);
+  }
+}
+
+.about-photo-frame__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    145deg,
+    rgba(227, 38, 54, 0.12) 0%,
+    transparent 40%,
+    transparent 100%
+  );
+  pointer-events: none;
+  mix-blend-mode: soft-light;
 }
 
 .about-photo-frame__edge {
@@ -2094,6 +2176,21 @@ h3,
   }
   .hero-photo {
     animation: none !important;
+  }
+  .about-photo-wrap::before {
+    animation: none !important;
+    opacity: 0.32 !important;
+  }
+  .about-photo-frame {
+    animation: none !important;
+    box-shadow:
+      0 20px 56px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 0 32px rgba(227, 38, 54, 0.2) !important;
+  }
+  .about-photo {
+    animation: none !important;
+    transform: scale(1.02) !important;
   }
   .logo {
     animation: none !important;
