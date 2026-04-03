@@ -1591,7 +1591,7 @@ h3,
 /* === Manifest: StarBorder (порт с @react-bits, без React) === */
 .manifest-star-border {
   --manifest-star-speed: 5s;
-  --manifest-star-color: color-mix(in srgb, var(--accent) 78%, #e879f9 22%);
+  --manifest-star-color: var(--accent);
   display: block;
   max-width: 52rem;
   margin: 0 auto;
@@ -1599,12 +1599,6 @@ h3,
   border-radius: var(--radius);
   overflow: hidden;
   padding: 1px 0;
-}
-
-@supports not (color: color-mix(in srgb, red, blue)) {
-  .manifest-star-border {
-    --manifest-star-color: var(--accent);
-  }
 }
 
 .manifest-star-border__gradient {
