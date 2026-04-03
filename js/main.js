@@ -43,6 +43,29 @@
     document.body.classList.add("is-cursor-ready");
   }
 
+  /* --- Шапка: плотнее фон при скролле --- */
+  const header = document.querySelector(".site-header");
+  function onScrollHeader() {
+    if (!header) return;
+    header.classList.toggle("is-scrolled", window.scrollY > 48);
+  }
+  onScrollHeader();
+  window.addEventListener("scroll", onScrollHeader, { passive: true });
+
+  /* --- Лёгкий параллакс фото в hero --- */
+  const heroVisual = document.querySelector(".hero__visual.js-parallax");
+  function onScrollParallax() {
+    if (!heroVisual || prefersReduced) return;
+    const y = window.scrollY;
+    const max = Math.min(500, window.innerHeight);
+    const p = Math.max(0, Math.min(1, y / max));
+    heroVisual.style.transform = "translateY(" + p * 18 + "px)";
+  }
+  if (heroVisual && !prefersReduced) {
+    window.addEventListener("scroll", onScrollParallax, { passive: true });
+    onScrollParallax();
+  }
+
   /* --- Hero: появление по словам --- */
   function splitHeroTitle() {
     const line = document.querySelector(".hero-title__line[data-split]");
