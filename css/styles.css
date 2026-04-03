@@ -783,7 +783,8 @@ h3,
 .about-hint {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  justify-content: space-between;
+  gap: 0.75rem;
   align-self: stretch;
   padding: 0.65rem 0.85rem;
   border-radius: var(--radius-sm);
@@ -792,11 +793,6 @@ h3,
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.2) inset,
     0 8px 24px rgba(0, 0, 0, 0.22);
-  font-family: var(--heading-font);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
   transition:
@@ -806,27 +802,25 @@ h3,
 }
 
 .about-hint__text {
-  flex: 1;
+  flex: 0 1 auto;
   min-width: 0;
+  font-family: var(--heading-font);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.about-hint__arrow {
-  display: flex;
-  color: var(--accent);
+.about-hint__name {
+  font-family: var(--heading-font);
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: var(--heading-track);
+  line-height: 1.15;
+  color: var(--text);
   flex-shrink: 0;
-  animation: about-hint-nudge 2.2s ease-in-out infinite;
-}
-
-@keyframes about-hint-nudge {
-  0%,
-  100% {
-    transform: translateX(0);
-    opacity: 0.9;
-  }
-  50% {
-    transform: translateX(4px);
-    opacity: 1;
-  }
+  text-align: right;
+  text-transform: none;
 }
 
 @media (hover: hover) {
@@ -839,7 +833,7 @@ h3,
       0 0 24px rgba(227, 38, 54, 0.2);
   }
 
-  .about-hint:hover .about-hint__arrow {
+  .about-hint:hover .about-hint__name {
     color: var(--neon-core);
   }
 }
@@ -880,25 +874,16 @@ h3,
   text-align: center;
 }
 
-.about-plaque__name {
-  margin: 0 0 0.3rem;
-  font-family: var(--heading-font);
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
-  font-weight: 700;
-  letter-spacing: var(--heading-track);
-  line-height: var(--heading-lh);
-  color: var(--text);
-}
-
 .about-plaque__role {
   margin: 0;
   font-family: var(--heading-font);
-  font-size: 0.72rem;
+  font-size: clamp(0.78rem, 1.8vw, 0.85rem);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
   opacity: 0.92;
+  text-align: center;
 }
 
 .about-photo-wrap {
@@ -2275,9 +2260,6 @@ h3,
     opacity: 0.22 !important;
   }
   .hero-photo {
-    animation: none !important;
-  }
-  .about-hint__arrow {
     animation: none !important;
   }
   .about-photo-wrap::before {
