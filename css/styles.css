@@ -820,6 +820,57 @@ h3,
   transition-delay: 0.12s;
 }
 
+.section--why .why-stats.reveal {
+  transition-delay: 0.18s;
+}
+
+.section--why .why-compare.reveal {
+  transition-delay: 0.24s;
+}
+
+.section--why .why-quote.reveal {
+  transition-delay: 0.3s;
+}
+
+.section--why .why-summary.reveal {
+  transition-delay: 0.36s;
+}
+
+.why-stats {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .why-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.why-stats__item {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.why-stats__num {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: var(--heading-track);
+  color: var(--accent);
+  margin-right: 0.2em;
+}
+
 .why-compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -860,6 +911,40 @@ h3,
   }
 }
 
+.why-panel__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 0.9rem;
+}
+
+.why-panel__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 10px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(227, 38, 54, 0.22);
+  box-shadow: 0 0 20px rgba(227, 38, 54, 0.08);
+}
+
+.why-panel__icon svg {
+  display: block;
+}
+
+.why-panel--accent .why-panel__icon {
+  background: rgba(227, 38, 54, 0.14);
+  border-color: rgba(227, 38, 54, 0.35);
+}
+
+.why-panel__titles {
+  min-width: 0;
+}
+
 .why-panel__title {
   margin: 0 0 0.2rem;
   font-family: var(--heading-font);
@@ -871,7 +956,7 @@ h3,
 }
 
 .why-panel__hint {
-  margin: 0 0 0.85rem;
+  margin: 0;
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -912,6 +997,22 @@ h3,
 .why-panel--accent .why-panel__list li::before {
   opacity: 1;
   box-shadow: 0 0 10px rgba(227, 38, 54, 0.45);
+}
+
+.why-quote {
+  margin: 0 0 1.5rem;
+  padding: 1.1rem 1.15rem 1.15rem 1.25rem;
+  border-left: 2px solid rgba(227, 38, 54, 0.35);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.why-quote p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(233, 234, 238, 0.88);
+  font-style: italic;
 }
 
 .why-summary {
@@ -1588,6 +1689,10 @@ h3,
   .approach-list .approach-item.reveal,
   .projects-grid .project-card.reveal,
   .skills-grid .skill-card.reveal,
+  .section--why .why-stats.reveal,
+  .section--why .why-compare.reveal,
+  .section--why .why-quote.reveal,
+  .section--why .why-summary.reveal,
   .testimonials .testimonial.reveal {
     transition-delay: 0s !important;
   }
