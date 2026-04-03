@@ -227,22 +227,46 @@
       </div>
     </section>
 
-    <section id="testimonials" class="section section--testimonials">
+    <section id="testimonials" class="section section--testimonials" aria-labelledby="testimonials-title">
       <div class="container">
-        <h2 class="section-title center reveal">Отзывы</h2>
-        <p class="section-lead center reveal">Коротко о совместной работе</p>
+        <h2 id="testimonials-title" class="section-title center reveal">Отзывы</h2>
+        <p class="section-lead center reveal">Коротко о совместной работе — условные формулировки, тон и смысл совпадают с реальными проектами</p>
         <div class="testimonials">
           <figure class="testimonial reveal">
-            <blockquote>«Сайт перестал быть “страницей” и стал ощущением бренда. Быстро, аккуратно, с характером.»</blockquote>
-            <figcaption>— Мария, digital-стратег</figcaption>
+            <blockquote class="testimonial__quote">
+              <p>Сайт перестал быть «страницей» и стал ощущением бренда. Быстро, аккуратно, с характером.</p>
+            </blockquote>
+            <figcaption class="testimonial__meta">
+              <span class="testimonial__avatar" aria-hidden="true">М</span>
+              <div class="testimonial__who">
+                <cite class="testimonial__name">Мария</cite>
+                <span class="testimonial__role">Digital-стратег</span>
+              </div>
+            </figcaption>
           </figure>
           <figure class="testimonial reveal">
-            <blockquote>«Наконец-то портфолио, которым не стыдно кинуть ссылку в чат — и по текстам, и по подаче.»</blockquote>
-            <figcaption>— Алексей, креативный продюсер</figcaption>
+            <blockquote class="testimonial__quote">
+              <p>Наконец-то портфолио, которым не стыдно кинуть ссылку в чат — и по текстам, и по подаче.</p>
+            </blockquote>
+            <figcaption class="testimonial__meta">
+              <span class="testimonial__avatar" aria-hidden="true">А</span>
+              <div class="testimonial__who">
+                <cite class="testimonial__name">Алексей</cite>
+                <span class="testimonial__role">Креативный продюсер</span>
+              </div>
+            </figcaption>
           </figure>
           <figure class="testimonial reveal">
-            <blockquote>«Понимание UX + визуал + скорость. Без бесконечных итераций “ещё чуть-чуть”.»</blockquote>
-            <figcaption>— Команда AI-продукта</figcaption>
+            <blockquote class="testimonial__quote">
+              <p>Понимание UX + визуал + скорость. Без бесконечных итераций «ещё чуть-чуть».</p>
+            </blockquote>
+            <figcaption class="testimonial__meta">
+              <span class="testimonial__avatar testimonial__avatar--team" aria-hidden="true">AI</span>
+              <div class="testimonial__who">
+                <cite class="testimonial__name">Команда продукта</cite>
+                <span class="testimonial__role">AI-сервис</span>
+              </div>
+            </figcaption>
           </figure>
         </div>
       </div>
