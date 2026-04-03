@@ -178,6 +178,79 @@
 
   initHeroTextType();
 
+  /* --- Кому подойдёт: поочерёдная подсветка карточек --- */
+  function initAudienceHighlight() {
+    if (prefersReduced) return;
+
+    const grid = document.querySelector(".audience-grid");
+    const cards = grid ? Array.from(grid.querySelectorAll(".audience-card")) : [];
+    const section = document.getElementById("audience");
+    if (cards.length === 0) return;
+
+    let idx = 0;
+    let timer = null;
+    let paused = false;
+    let running = false;
+    const intervalMs = 3200;
+
+    function applyHighlight() {
+      cards.forEach(function (card, i) {
+        card.classList.toggle("is-highlight", i === idx);
+      });
+    }
+
+    function step() {
+      if (paused) return;
+      idx = (idx + 1) % cards.length;
+      applyHighlight();
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      idx = 0;
+      applyHighlight();
+      timer = setInterval(step, intervalMs);
+    }
+
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      running = false;
+      cards.forEach(function (card) {
+        card.classList.remove("is-highlight");
+      });
+    }
+
+    if (grid) {
+      grid.addEventListener("mouseenter", function () {
+        paused = true;
+      });
+      grid.addEventListener("mouseleave", function () {
+        paused = false;
+      });
+    }
+
+    if (!section) {
+      start();
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      function (entries) {
+        var en = entries[0];
+        if (en.isIntersecting) start();
+        else stop();
+      },
+      { root: null, threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+    );
+    io.observe(section);
+  }
+
+  initAudienceHighlight();
+
   /* --- Появление секций при скролле --- */
   const revealEls = document.querySelectorAll(".reveal");
   if (revealEls.length && !prefersReduced) {
