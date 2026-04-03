@@ -178,66 +178,6 @@
 
   initHeroTextType();
 
-  /* --- Стек карточек: одна активная, предыдущие «уезжают» вверх --- */
-  const stackScroll = document.getElementById("stack-scroll");
-  const cards = stackScroll
-    ? Array.from(stackScroll.querySelectorAll(".stack-card"))
-    : [];
-
-  function updateCardStack() {
-    if (!stackScroll || cards.length === 0) return;
-
-    const rect = stackScroll.getBoundingClientRect();
-    const scrollable = stackScroll.offsetHeight - window.innerHeight;
-    if (scrollable <= 0) return;
-
-    let progress = -rect.top / scrollable;
-    progress = Math.max(0, Math.min(1, progress));
-
-    const n = cards.length;
-    const idx = Math.min(n - 1, Math.floor(progress * n + 1e-6));
-
-    cards.forEach((card, i) => {
-      const dist = i - idx;
-      card.classList.toggle("is-active", dist === 0);
-
-      if (dist === 0) {
-        card.style.setProperty("--offset", "0");
-        card.style.setProperty("--scale", "1");
-        card.style.setProperty("--opacity", "1");
-        card.style.setProperty("--z", "100");
-        card.style.setProperty("--rot", "0deg");
-      } else if (dist < 0) {
-        card.style.setProperty("--offset", "-200");
-        card.style.setProperty("--scale", "0.9");
-        card.style.setProperty("--opacity", "0");
-        card.style.setProperty("--z", String(i));
-        card.style.setProperty("--rot", "-4deg");
-      } else {
-        card.style.setProperty("--offset", "160");
-        card.style.setProperty("--scale", "0.94");
-        card.style.setProperty("--opacity", "0");
-        card.style.setProperty("--z", String(i));
-        card.style.setProperty("--rot", "4deg");
-      }
-    });
-  }
-
-  if (stackScroll && cards.length && !prefersReduced) {
-    window.addEventListener("scroll", updateCardStack, { passive: true });
-    window.addEventListener("resize", updateCardStack);
-    updateCardStack();
-  } else if (stackScroll && cards.length && prefersReduced) {
-    cards.forEach((card, i) => {
-      card.style.setProperty("--offset", i === 0 ? "0" : "0");
-      card.style.setProperty("--scale", "1");
-      card.style.setProperty("--opacity", i === 0 ? "1" : "0");
-      card.style.setProperty("--z", i === 0 ? "100" : String(i));
-      card.style.setProperty("--rot", "0deg");
-      card.classList.toggle("is-active", i === 0);
-    });
-  }
-
   /* --- Появление секций при скролле --- */
   const revealEls = document.querySelectorAll(".reveal");
   if (revealEls.length && !prefersReduced) {
