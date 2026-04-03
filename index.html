@@ -72,28 +72,39 @@
       <div class="container about-grid">
         <div class="about-visual reveal">
           <div class="about-visual__stack">
-            <div class="about-photo-wrap">
-              <div class="about-photo-frame">
-                <img
-                  class="about-photo"
-                  src="assets/anna-about.webp"
-                  width="1080"
-                  height="1920"
-                  alt="Портрет: красная рубашка, чёрный пиджак, телефон у уха, тёмный фон со светом и дымом"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div class="about-photo-frame__shine" aria-hidden="true"></div>
-                <div class="about-photo-frame__edge" aria-hidden="true"></div>
+            <a class="about-hint" href="#about-copy">
+              <span class="about-hint__text">Обо мне</span>
+              <span class="about-hint__arrow" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </span>
+            </a>
+            <div class="about-visual__bottom">
+              <div class="about-photo-wrap">
+                <div class="about-photo-frame">
+                  <img
+                    class="about-photo"
+                    src="assets/anna-about.webp"
+                    width="1080"
+                    height="1920"
+                    alt="Портрет: красная рубашка, чёрный пиджак, телефон у уха, тёмный фон со светом и дымом"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="about-photo-frame__shine" aria-hidden="true"></div>
+                  <div class="about-photo-frame__edge" aria-hidden="true"></div>
+                </div>
               </div>
-            </div>
-            <div class="about-plaque">
-              <p class="about-plaque__name">Анна Бородина</p>
-              <p class="about-plaque__role">AI креатор</p>
+              <div class="about-plaque">
+                <p class="about-plaque__name">Анна Бородина</p>
+                <p class="about-plaque__role">AI креатор</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="about-copy">
+        <div id="about-copy" class="about-copy">
           <div class="manifest-star-border manifest-star-border--about reveal">
             <div class="manifest-star-border__gradient manifest-star-border__gradient--bottom" aria-hidden="true"></div>
             <div class="manifest-star-border__gradient manifest-star-border__gradient--top" aria-hidden="true"></div>
