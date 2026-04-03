@@ -66,30 +66,117 @@
     onScrollParallax();
   }
 
-  /* --- Hero: появление по словам --- */
-  function splitHeroTitle() {
-    const line = document.querySelector(".hero-title__line[data-split]");
-    if (!line || prefersReduced) return;
+  /* --- Hero: эффект печати (логика как в React Bits TextType, без GSAP) --- */
+  const HERO_TEXT_PHRASES = [
+    "Я делаю сайты, интерфейсы и digital-проекты, которые выглядят как вайб, а работают как система",
+    "От идеи до экрана — стиль, логика и ощущение в одном флаконе",
+    "Не шаблон, а характер: лендинги, портфолио и AI-first проекты",
+  ];
 
-    const raw = line.textContent.trim();
-    const words = raw.split(/\s+/);
-    line.textContent = "";
-    words.forEach((w, i) => {
-      const span = document.createElement("span");
-      span.className = "word";
-      span.textContent = w;
-      span.style.animationDelay = 0.08 * i + "s";
-      line.appendChild(span);
-      if (i < words.length - 1) {
-        const sp = document.createElement("span");
-        sp.className = "word space";
-        sp.innerHTML = "&nbsp;";
-        line.appendChild(sp);
+  function initHeroTextType() {
+    const root = document.getElementById("hero-text-type");
+    const contentEl = root && root.querySelector(".text-type__content");
+    const cursorEl = root && root.querySelector(".text-type__cursor");
+    if (!root || !contentEl || HERO_TEXT_PHRASES.length === 0) return;
+
+    const typingSpeed = 160;
+    const deletingSpeed = 75;
+    const pauseDuration = 3800;
+    const initialDelay = 450;
+    const loop = true;
+
+    if (prefersReduced) {
+      contentEl.textContent = HERO_TEXT_PHRASES[0];
+      if (cursorEl) cursorEl.hidden = true;
+      return;
+    }
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let displayed = "";
+    let deleting = false;
+    let timer = null;
+
+    function clearTimer() {
+      if (timer !== null) {
+        clearTimeout(timer);
+        timer = null;
       }
-    });
+    }
+
+    function schedule(fn, delay) {
+      clearTimer();
+      timer = setTimeout(fn, delay);
+    }
+
+    function tick() {
+      const phrase = HERO_TEXT_PHRASES[textIndex];
+      if (!phrase) return;
+
+      if (!deleting) {
+        if (charIndex < phrase.length) {
+          displayed += phrase.charAt(charIndex);
+          charIndex += 1;
+          contentEl.textContent = displayed;
+          schedule(tick, typingSpeed);
+          return;
+        }
+        if (!loop && textIndex === HERO_TEXT_PHRASES.length - 1) {
+          return;
+        }
+        schedule(function () {
+          deleting = true;
+          tick();
+        }, pauseDuration);
+        return;
+      }
+
+      if (displayed.length > 0) {
+        displayed = displayed.slice(0, -1);
+        contentEl.textContent = displayed;
+        schedule(tick, deletingSpeed);
+        return;
+      }
+
+      deleting = false;
+      charIndex = 0;
+      if (!loop && textIndex === HERO_TEXT_PHRASES.length - 1) {
+        return;
+      }
+      textIndex = (textIndex + 1) % HERO_TEXT_PHRASES.length;
+      schedule(tick, pauseDuration);
+    }
+
+    function startWhenVisible() {
+      const hero = document.getElementById("hero");
+      function go() {
+        schedule(tick, initialDelay);
+      }
+      if (!hero) {
+        go();
+        return;
+      }
+      const r = hero.getBoundingClientRect();
+      if (r.top < window.innerHeight * 1.05 && r.bottom > -40) {
+        go();
+        return;
+      }
+      const io = new IntersectionObserver(
+        function (entries) {
+          if (entries[0].isIntersecting) {
+            io.disconnect();
+            go();
+          }
+        },
+        { threshold: 0.12 }
+      );
+      io.observe(hero);
+    }
+
+    startWhenVisible();
   }
 
-  splitHeroTitle();
+  initHeroTextType();
 
   /* --- Стек карточек: одна активная, предыдущие «уезжают» вверх --- */
   const stackScroll = document.getElementById("stack-scroll");
