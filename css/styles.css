@@ -1504,32 +1504,42 @@ h3,
   color: var(--muted);
 }
 
-/* === Audience === */
-.audience-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 0;
+/* === Кому подойдёт: сетка как «Что я делаю» === */
+.section--audience {
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, transparent, rgba(227, 38, 54, 0.03) 45%, transparent);
 }
 
-.audience-list li {
-  padding: 0.65rem 0;
-  border-bottom: 1px solid var(--border);
+.audience-lead {
+  max-width: 34rem;
+}
+
+.section--audience .section-title.center.reveal + .audience-lead.reveal {
+  transition-delay: 0.1s;
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 1.15rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .audience-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.audience-card .skill-card__index {
+  margin-bottom: 0.65rem;
+}
+
+.audience-card__text {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.58;
   color: var(--muted);
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.audience-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.7;
 }
 
 /* === Manifest === */
@@ -1703,6 +1713,28 @@ h3,
   transition-delay: 0.32s;
 }
 
+.audience-grid .audience-card.reveal:nth-child(1) {
+  transition-delay: 0s;
+}
+.audience-grid .audience-card.reveal:nth-child(2) {
+  transition-delay: 0.06s;
+}
+.audience-grid .audience-card.reveal:nth-child(3) {
+  transition-delay: 0.12s;
+}
+.audience-grid .audience-card.reveal:nth-child(4) {
+  transition-delay: 0.18s;
+}
+.audience-grid .audience-card.reveal:nth-child(5) {
+  transition-delay: 0.24s;
+}
+.audience-grid .audience-card.reveal:nth-child(6) {
+  transition-delay: 0.3s;
+}
+.audience-grid .audience-card.reveal:nth-child(7) {
+  transition-delay: 0.36s;
+}
+
 .nav a:focus-visible,
 .btn:focus-visible {
   outline: 2px solid var(--accent);
@@ -1774,6 +1806,7 @@ h3,
   .section--why .why-summary.reveal,
   .stack-grid .stack-group.reveal,
   .section--stack .stack-footnote.reveal,
+  .audience-grid .audience-card.reveal,
   .testimonials .testimonial.reveal {
     transition-delay: 0s !important;
   }
