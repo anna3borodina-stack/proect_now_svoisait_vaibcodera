@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="640" viewBox="0 0 560 640" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1b20"/>
+      <stop offset="50%" stop-color="#25262e"/>
+      <stop offset="100%" stop-color="#0f1012"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#c8ff3d" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#785aff" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect width="560" height="640" fill="url(#g1)"/>
+  <ellipse cx="280" cy="260" rx="140" ry="160" fill="url(#g2)" opacity="0.9"/>
+  <ellipse cx="280" cy="300" rx="180" ry="220" fill="#0a0a0c" opacity="0.35"/>
+  <text x="280" y="560" text-anchor="middle" fill="#6b7080" font-family="system-ui,sans-serif" font-size="14">0<5=8B5 =0 photo.jpg / A2>Q D>B></text>
+</svg>
